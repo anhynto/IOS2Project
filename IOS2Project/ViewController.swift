@@ -9,6 +9,8 @@ import UIKit
 
 class ColletionViewController: UICollectionViewController {
     
+    
+    
     private enum Section {
         case grilleDePersos
     }
@@ -26,23 +28,18 @@ class ColletionViewController: UICollectionViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        collectionView.collectionViewLayout = makeLayout()
+        
         dataSource = UICollectionViewDiffableDataSource<Section, Card>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> PersonageCollectionViewCell? in
             
             switch item {
             case .personnage(let unPerso):
                 
                 let card = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCard", for: indexPath) as! PersonageCollectionViewCell
+            
                 
                 card.display(atDisplay: unPerso)
                 
-                
-                //cell.textLabel?.text = unPerso.name
-                //cell.imageView?.loadImage(from: unPerso.photoURL) {
-                //    cell.setNeedsLayout()
-                //}
-                //cell.detailTextLabel?.text = DateFormatter.localizedString(from: unPerso.createdDate,
-                //                                                           dateStyle: .medium,
-                //                                                           timeStyle: .short)
                 return card
             }
         })
@@ -55,15 +52,49 @@ class ColletionViewController: UICollectionViewController {
             case .failure(let error):
                 print(error)
 
-            case .success(let paginatedElements):
-                let characters = paginatedElements.decodedElements
-                let snapshot = self.createSnapshot(characters: characters)
+            case .success(let elements):
+                let charactersList = elements.decodedElements
+                let snapshot = self.createSnapshot(characters: charactersList)
 
                 DispatchQueue.main.async {
                     self.dataSource.apply(snapshot)
                 }
             }
         }
+        
+    }
+    
+    private func makeLayout()-> UICollectionViewLayout{
+        
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { (section, environment) -> NSCollectionLayoutSection? in
+            
+            let data = self.dataSource.snapshot()
+            
+            let sections = data.sectionIdentifiers[section]
+            
+            switch sections {
+            case .grilleDePersos:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                      heightDimension: .fractionalWidth(1))
+
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .absolute(150))
+
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitem: item,
+                                                               count: 2)
+
+                let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 20
+
+                return section
+
+            }
+        })
+
+        return layout
         
     }
 

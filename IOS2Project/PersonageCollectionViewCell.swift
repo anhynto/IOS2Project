@@ -11,11 +11,9 @@ class PersonageCollectionViewCell : UICollectionViewCell {
     
     static let reuseIdentifier = "characterCard"
     
-
+    @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet private var imageView: UIImageView!
-    
-    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     public func display(atDisplay:Personnage){
         
