@@ -21,6 +21,14 @@ class ColletionViewController: UICollectionViewController {
     
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Card>!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destination = segue.destination as! DetailCharacterViewController
+        
+        destination.atDetail = listOfCharacters[collectionView.indexPath(for: sender as! UICollectionViewCell)!.row]
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,25 +87,20 @@ class ColletionViewController: UICollectionViewController {
             
             switch sections {
             case .grilleDePersos:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .estimated(125))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                                      heightDimension: .estimated(150))
+                                let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                item.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 10, bottom: 10, trailing: 10)
+                                let groupeSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                                        heightDimension: .estimated(150))
 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                       heightDimension: .estimated(150))
+                                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupeSize,
+                                                                               subitem: item,
+                                                                               count: 2)
 
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                               subitem: item,
-                                                               count: 2)
-        
+                                let section = NSCollectionLayoutSection(group: group)
 
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 20
-
-                return section
+                                return section
 
             }
         })

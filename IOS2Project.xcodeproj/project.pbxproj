@@ -19,6 +19,7 @@
 		0864F91A25E6923C00F6B4E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0864F91825E6923C00F6B4E1 /* LaunchScreen.storyboard */; };
 		0864F93B25E69E6C00F6B4E1 /* Personnage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864F93825E69E6C00F6B4E1 /* Personnage.swift */; };
 		0864F93C25E69E6C00F6B4E1 /* PageElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864F93925E69E6C00F6B4E1 /* PageElements.swift */; };
+		08FD9C5B25EFED2600A7B2DC /* DetailCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FD9C5A25EFED2600A7B2DC /* DetailCharacterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0864F91B25E6923C00F6B4E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0864F93825E69E6C00F6B4E1 /* Personnage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Personnage.swift; sourceTree = "<group>"; };
 		0864F93925E69E6C00F6B4E1 /* PageElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageElements.swift; sourceTree = "<group>"; };
+		08FD9C5A25EFED2600A7B2DC /* DetailCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCharacterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				0864F92C25E6993F00F6B4E1 /* Model */,
 				083FDC6A25E6A72A0092B5B3 /* NetworkManager.swift */,
 				083FDC7025E6B4810092B5B3 /* PersonageCollectionViewCell.swift */,
+				08FD9C5A25EFED2600A7B2DC /* DetailCharacterViewController.swift */,
 			);
 			path = IOS2Project;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0864F91525E6923B00F6B4E1 /* IOS2Project.xcdatamodeld in Sources */,
+				08FD9C5B25EFED2600A7B2DC /* DetailCharacterViewController.swift in Sources */,
 				0864F90F25E6923B00F6B4E1 /* ViewController.swift in Sources */,
 				0864F93C25E69E6C00F6B4E1 /* PageElements.swift in Sources */,
 				0864F93B25E69E6C00F6B4E1 /* Personnage.swift in Sources */,
