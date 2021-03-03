@@ -126,6 +126,13 @@
                                                     <color key="textColor" name="theme"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sepcies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-jQ-SFs">
+                                                    <rect key="frame" x="20" y="152" width="374" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="theme"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -142,11 +149,12 @@
                         <outlet property="dateLabel" destination="mcI-Gm-enM" id="2Xo-0x-CHl"/>
                         <outlet property="idLabel" destination="uBO-3v-WvU" id="M8G-Wp-sFS"/>
                         <outlet property="imageView" destination="y2p-v7-CyB" id="2na-iq-4b7"/>
+                        <outlet property="speciesLabel" destination="P4w-jQ-SFs" id="X8g-zH-sMQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fok-Ez-6Gw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="-419"/>
+            <point key="canvasLocation" x="1757.9710144927537" y="-419.19642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QKB-OL-ifT">

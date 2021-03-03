@@ -15,6 +15,8 @@ class PersonageCollectionViewCell : UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    
+    
     public func display(atDisplay:Personnage){
         
         nameLabel.text = atDisplay.name

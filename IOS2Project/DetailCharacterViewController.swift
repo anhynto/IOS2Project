@@ -19,6 +19,7 @@ class DetailCharacterViewController: UITableViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var speciesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,8 @@ class DetailCharacterViewController: UITableViewController {
                                                                    timeStyle: .short)
         
         loadImage(characters: atDetail)
+        
+        speciesLabel.text = "Species : " + atDetail.species
 
     }
 

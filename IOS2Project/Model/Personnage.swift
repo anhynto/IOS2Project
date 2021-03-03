@@ -13,6 +13,7 @@ struct Personnage: Hashable {
     let name: String
     let photoURL: URL
     let createdDate: Date
+    let species: String
 }
 
 extension Personnage: Decodable {
@@ -21,5 +22,6 @@ extension Personnage: Decodable {
         case name = "name"
         case photoURL = "image"
         case createdDate = "created"
+        case species = "species"
     }
 }
