@@ -8,9 +8,7 @@
 import UIKit
 
 class ColletionViewController: UICollectionViewController {
-    
-    
-    
+
     private enum Section {
         case grilleDePersos
     }
@@ -30,6 +28,11 @@ class ColletionViewController: UICollectionViewController {
         
         collectionView.collectionViewLayout = makeLayout()
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        
         dataSource = UICollectionViewDiffableDataSource<Section, Card>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> PersonageCollectionViewCell? in
             
             switch item {
@@ -42,6 +45,7 @@ class ColletionViewController: UICollectionViewController {
                 
                 return card
             }
+        
         })
         
         let snapshot = createSnapshot(characters: [])
@@ -54,6 +58,7 @@ class ColletionViewController: UICollectionViewController {
 
             case .success(let elements):
                 let charactersList = elements.decodedElements
+                self.listOfCharacters = charactersList
                 let snapshot = self.createSnapshot(characters: charactersList)
 
                 DispatchQueue.main.async {
@@ -75,16 +80,19 @@ class ColletionViewController: UICollectionViewController {
             switch sections {
             case .grilleDePersos:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalWidth(1))
+                                                      heightDimension: .estimated(125))
 
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                
+                item.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 10, bottom: 10, trailing: 10)
 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                       heightDimension: .absolute(150))
+                                                       heightDimension: .estimated(150))
 
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                subitem: item,
                                                                count: 2)
+        
 
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 20
@@ -111,3 +119,18 @@ class ColletionViewController: UICollectionViewController {
 
 }
 
+extension ColletionViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchQuery = searchController.searchBar.text
+        var newSnapshot = NSDiffableDataSourceSnapshot<Section, Card>()
+        if searchQuery == nil || searchQuery == "" {
+            newSnapshot = createSnapshot(characters: listOfCharacters)
+        }else{
+            let result = listOfCharacters.filter{$0.name.localizedCaseInsensitiveContains(searchQuery ?? "")
+            }
+            newSnapshot = createSnapshot(characters: result)
+            
+        }
+        dataSource.apply(newSnapshot)
+    }
+}

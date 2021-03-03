@@ -23,6 +23,7 @@ class PersonageCollectionViewCell : UICollectionViewCell {
         
     }
     
+    
     private func loadImage(characters:Personnage){
             DispatchQueue.global().async {
                 guard let imageData = try? Data(contentsOf: characters.photoURL) else{ return }
